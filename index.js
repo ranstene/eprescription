@@ -6,6 +6,7 @@ const users = require("./routes/api/users");
 const medicine = require("./routes/api/medicine");
 
 const secretary = require("./routes/api/secretary");
+const pharmacy = require("./routes/api/pharmacy");
 
 const app = express();
 
@@ -16,9 +17,14 @@ app.use(bodyParser.json());
 // //use users
 app.use("/api/users", users);
 
+////medicine api
 app.use("/api/medicine", medicine);
 
+////secretary api
 app.use("/api/secretary", secretary);
+
+///pharmacy api
+app.use("api/pharmacy", pharmacy);
 
 const port = process.env.PORT || 5000;
 

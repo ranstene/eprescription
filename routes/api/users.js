@@ -23,8 +23,8 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   pool.getConnection((err, connection) => {
     connection.query(
-      `INSERT INTO users (username,name,password)
-                VALUES ('${req.body.username}', '${req.body.name}', '${
+      `INSERT INTO users (username,fullname,password)
+                VALUES ('${req.body.username}', '${req.body.fullname}', '${
         req.body.password
       }')`,
       (err, user) => {
@@ -48,35 +48,5 @@ router.get("/", (req, res) => {
     );
   });
 });
-
-//method        POST
-//description   Register new medicine
-//access        PUBLIC
-
-// router.post("/", (req, res) => {
-//   pool.getConnection((err, connection) => {
-//     connection.query(
-//       `INSERT INTO medicine (MedId,MedName,DsgForm,DsgStrength,LotNo,ManDate,ExpDate,Lab,Storage,
-//             Indication,Contraindiction,AdReaction,IncRemarks,Action)
-//                   VALUES ('${req.body.MedId}', '${req.body.MedName}', '${
-//         req.body.DsgForm
-//       }','${req.body.MedName}','${req.body.DsgForm}','${
-//         req.body.DsgStrength
-//       }','${req.body.LotNo}',
-//         '${req.body.ManDate}', '${req.body.ExpDate}','${req.body.Lab}','${
-//         req.body.Storage
-//       }',
-//         '${req.body.Indication}','${req.body.Contraindiction}','${
-//         req.body.AdReaction
-//       }',
-//         '${req.body.IncRemarks}','${req.body.Action}')`,
-//       (err, user) => {
-//         if (err) throw err;
-
-//         res.json({ success: true, msg: "SUCCESSFULLY REGISTER" });
-//       }
-//     );
-//   });
-// });
 
 module.exports = router;

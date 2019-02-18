@@ -35,19 +35,53 @@ const router = express.Router();
 //method        POST
 //description   Register new user
 //access        PUBLIC
-router.post("/", (req, res) => {
+router.post("/add", (req, res) => {
   pool.getConnection((err, connection) => {
     connection.query(
       `INSERT INTO secretary (Patient_Fname,Patient_Mname,Patient_Lname)
                 VALUES (
-                     '${req.body.username}',
-                     '${req.body.name}',
-                     '${req.body.password}')`,
+                     '${req.body.Patient_Fname}',
+                     '${req.body.Patient_Mname}',
+                     '${req.body.Patient_Lname}')`,
 
       (err, user) => {
         if (err) throw err;
 
         res.json({ success: true, msg: "SUCCESSFULLY REGISTER" });
+      }
+    );
+  });
+});
+
+/////patient view
+
+router.get("/view", (req, res) => {
+  pool.getConnection((err, connection) => {
+    connection.query(
+      "SELECT * FROM secretary ORDER by sec_id desc",
+      (error, results) => {
+        if (error) {
+          res.status(404).json(error);
+        }
+        res.json(results);
+        connection.release();
+        connection.destroy();
+      }
+    );
+  });
+});
+
+////delete patient
+
+router.delete("/delete", (req, res) => {
+  pool.getConnection((err, connection) => {
+    connection.query(
+      `DELETE FROM secretary WHERE sec_id='${req.body.id}';`,
+
+      (err, user) => {
+        if (err) throw err;
+
+        res.json({ success: true, msg: "SUCCESSFULLY DELETED" });
       }
     );
   });
