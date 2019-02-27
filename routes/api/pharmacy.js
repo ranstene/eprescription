@@ -48,18 +48,8 @@ router.delete("/delete", (req, res) => {
   });
 });
 
-// router.get("/view", (req, res) => {
-//   pool.getConnection((err, connection) => {
-//     connection.query(
-//       "SELECT * from medicine ORDER by id desc",
-
-//       (err, user) => {
-//         if (err) throw err;
-
-//         res.json(user);
-//       }
-//     );
-//   });
+// router.get("/test", (req, res) => {
+//   res.json({ hi: "kons" });
 // });
 
 router.get("/view", (req, res) => {

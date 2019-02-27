@@ -7,6 +7,7 @@ const medicine = require("./routes/api/medicine");
 
 const secretary = require("./routes/api/secretary");
 const pharmacy = require("./routes/api/pharmacy");
+// const users = require("./routes/api/registersusers");
 
 const app = express();
 
@@ -24,8 +25,11 @@ app.use("/api/medicine", medicine);
 app.use("/api/secretary", secretary);
 
 ///pharmacy api
-app.use("api/pharmacy", pharmacy);
+app.use("/api/pharmacy", pharmacy);
 
-const port = process.env.PORT || 5000;
+///registeruser api
+// app.use("/api/registerusers", users);
+
+const port = process.env.PORT || 6000;
 
 app.listen(port, () => console.log(`server running on port ${port}`));
